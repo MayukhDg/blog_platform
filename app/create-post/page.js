@@ -17,6 +17,10 @@ const createPost = () => {
   const [submitting, setSubmitting] = useState(false);
   const { data:session } = useSession();
   const router = useRouter(); 
+
+  if(!session?.user?.id){
+    router.push("/")
+  }
   
   const handleSubmit = async(e)=>{
     e.preventDefault();
@@ -77,9 +81,9 @@ const createPost = () => {
   
   return (
     <section className='h-screen w-screen flex items-center justify-center  form__wrapper' >
-     <form  className='bg-slate-800 p-5 flex flex-col items-center justify-start' onSubmit={handleSubmit} >
+     <form  className='bg-slate-800 p-5 flex flex-col items-center justify-start mx-auto w-2/3 mt-4' onSubmit={handleSubmit} >
       <input className='outline-none rounded-sm p-1 mt-2' value={title}  onChange={e=>setTitle(e.target.value)} />
-       <textarea rows={10} cols={20} className='outline-none rounded-sm p-3 mt-2' value={content} onChange={e=>setContent(e.target.value)} />
+       <textarea rows={20} cols={20} className='outline-none rounded-sm p-3 mt-2 w-[80%]' value={content} onChange={e=>setContent(e.target.value)} />
        <input className='mt-2 outline-none' onChange={(e) => handleChangeImage(e)}  type="file" accept='image/*' />
        <button className='outline-none p-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold  ' type="submit" >Submit</button>
      </form>

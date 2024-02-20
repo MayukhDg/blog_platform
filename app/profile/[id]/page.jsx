@@ -45,6 +45,7 @@ const page = ({params}) => {
           image={post.image}
           author={post.author}
           pathname={pathname}
+          comments={post.comments}
         />
       )) }
     </section>

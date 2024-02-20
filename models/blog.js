@@ -7,6 +7,11 @@ const blogSchema = new mongoose.Schema ({
         required:true
     },
 
+    createdAt:{
+        type:Date,
+        default:Date.now()
+    },
+
     title:{
         type:String,
         required:true,
@@ -17,7 +22,12 @@ const blogSchema = new mongoose.Schema ({
         required:true
     },
 
-    image:String
+    image:String,
+
+    comments: [{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Comment"
+    }]
 })
 
 
