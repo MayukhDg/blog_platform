@@ -2,7 +2,7 @@ import React from 'react'
 
 const CommentCard = ({comment}) => {
   return (
-    <div>CommentCard</div>
+    <div>{comment}</div>
   )
 }
 

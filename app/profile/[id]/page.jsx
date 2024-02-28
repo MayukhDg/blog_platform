@@ -1,32 +1,29 @@
-"use client";
-
-import React, { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
 import BlogCard from '@/components/BlogCard';
 import Loader from '@/components/Loader';
 import { usePathname } from 'next/navigation';
+import { fetchUserBlogs } from '@/lib/actions/blog.actions';
+import { fetchUser } from '@/lib/actions/user.actions';
 
 
 
 
-const page = ({params}) => {
+ async function Page({params}){
   
-    const [posts, setPosts] = useState([]);
-    const { id } = params;
-    const { data:session  } = useSession();
-    const pathname = usePathname();
-   
+  const user = await fetchUser(params.id)
+  
+  if(!user) return;  
+  
+  const posts = await fetchUserBlogs();
+  
+  const UserBlogs = posts.filter((post)=>{
+    return (
+     post.author === params.id
+    )
+  })  
+  
+  console.log(UserBlogs);
     
-    useEffect(()=>{
-      const fetchUserPosts = async ()=>{
-        const response = await fetch(`/api/user/${id}/posts`)
-        const user = await response.json();
-        return user.posts;
-      }
-      
-        fetchUserPosts().then(data=>setPosts(data));
-    
-    },[id])
+ 
 
     if(!posts){
       return <Loader/>
@@ -36,7 +33,7 @@ const page = ({params}) => {
     return (
     <>
     <section className='flex flex-wrap w-screen gap-3 p-3 m-auto'>
-      { posts.map((post)=>(
+      { UserBlogs.map((post)=>(
         <BlogCard
           key={post._id}
           id={post._id}
@@ -44,7 +41,6 @@ const page = ({params}) => {
           content={post.content}
           image={post.image}
           author={post.author}
-          pathname={pathname}
           comments={post.comments}
         />
       )) }
@@ -53,4 +49,4 @@ const page = ({params}) => {
   )
 }
 
-export default page
+export default Page

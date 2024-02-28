@@ -14,7 +14,12 @@ const Navbar = () => {
   return (
     <nav className='flex justify-between items-center p-3 '>
    <Link href={"/"}>
-   <h3 className='text-2xl text-white' >Blogger</h3>
+   <Image
+     src={"/logo.png"}
+     height={80}
+    width={80}
+    alt="logo"
+      />
    </Link>
     { !session?.user?.email ?  
     <button onClick={()=>signIn("google")} className='outline-none p-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Sign In</button>: 

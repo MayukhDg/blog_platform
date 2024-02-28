@@ -3,11 +3,13 @@
 
 
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { uploadImage } from '@/lib/uploadImage';
 import Loader from '@/components/Loader';
+import { addBlog } from '@/lib/actions/blog.actions';
+import { usePathname } from 'next/navigation';
 
 const createPost = () => {
   
@@ -16,36 +18,30 @@ const createPost = () => {
   const [image, setImage] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const { data:session } = useSession();
-  const router = useRouter(); 
+  const router = useRouter();
+  const pathname = usePathname(); 
 
-  if(!session?.user?.id){
-    router.push("/")
-  }
+  useEffect(()=>{
+    if(!session?.user?.id){
+      router.push("/")
+    }
+  },[session?.user?.id])
   
   const handleSubmit = async(e)=>{
     e.preventDefault();
     setSubmitting(true)
     const imageUrl = await uploadImage(image);
+     const newBlog = await addBlog({
+      author: session?.user.id,
+        title, 
+          content,
+          image:imageUrl.url,
+          pathname
+     })
+
+     setSubmitting(false);
+      router.push(`/profile/${session?.user?.id}`)
     
-    
-    try {
-       const response = await fetch("/api/post/new", {
-        method:"POST",
-        body:JSON.stringify({
-           author: session?.user.id,
-           title, 
-           content,
-           image:imageUrl.url
-        })
-       }) 
-       
-       if(response.ok){
-        setSubmitting(false)
-        router.push("/")
-       }
-       } catch (error) {
-        console.log(error)
-     }
     
   }
   
