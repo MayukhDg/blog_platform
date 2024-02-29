@@ -40,6 +40,8 @@ const createPost = () => {
      })
 
      setSubmitting(false);
+     setTitle("");
+     setContent("");
       router.push(`/profile/${session?.user?.id}`)
     
     
