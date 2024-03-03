@@ -16,7 +16,7 @@ const Modal = ({ title, content, image, author, openModal, setOpenModal, onClose
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <div className="fixed inset-0 bg-black/25" />
+        <div className="fixed inset-0 bg-black/25 " />
       </Transition.Child>
 
       <div className="fixed inset-0 overflow-y-auto">
@@ -31,7 +31,7 @@ const Modal = ({ title, content, image, author, openModal, setOpenModal, onClose
             leaveTo="opacity-0 scale-95"
           >
             
-            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all mt-4">
               <Dialog.Title
                 as="h3"
                 className="text-lg font-medium leading-6 text-gray-900"
@@ -46,7 +46,7 @@ const Modal = ({ title, content, image, author, openModal, setOpenModal, onClose
               alt='blogpic'
               />
               <div className="mt-2">
-                <p className="text-sm text-gray-500">
+                <p className="text-lg text-gray-500">
                 {content}
                 </p>
               </div>

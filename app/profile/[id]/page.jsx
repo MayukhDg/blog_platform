@@ -10,7 +10,7 @@ import { fetchUser } from '@/lib/actions/user.actions';
   
   const user = await fetchUser(params.id)
   
-  if(!user) return;  
+  if(!user) return null;  
   
   const posts = await fetchUserBlogs();
   
@@ -29,7 +29,7 @@ import { fetchUser } from '@/lib/actions/user.actions';
   
     return (
     <>
-    <section className='flex flex-wrap w-screen gap-3 p-3 m-auto'>
+    <section className='flex flex-wrap w-screen gap-5 p-3 m-auto'>
       { UserBlogs.map((post)=>(
         <BlogCard
           key={post._id}
@@ -37,7 +37,7 @@ import { fetchUser } from '@/lib/actions/user.actions';
           title={post.title}
           content={post.content}
           image={post.image}
-          author={post.author}
+          author={params.id}
           comments={post.comments}
         />
       )) }

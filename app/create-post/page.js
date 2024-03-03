@@ -80,10 +80,18 @@ const createPost = () => {
   return (
     <section className='h-screen w-screen flex items-center justify-center  form__wrapper' >
      <form  className='bg-slate-800 p-5 flex flex-col items-center justify-start mx-auto w-2/3 mt-4' onSubmit={handleSubmit} >
-      <input className='outline-none rounded-sm p-1 mt-2' value={title}  onChange={e=>setTitle(e.target.value)} />
-       <textarea rows={20} cols={20} className='outline-none rounded-sm p-3 mt-2 w-[80%]' value={content} onChange={e=>setContent(e.target.value)} />
-       <input className='mt-2 outline-none' onChange={(e) => handleChangeImage(e)}  type="file" accept='image/*' />
-       <button className='outline-none p-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold  ' type="submit" >Submit</button>
+      <input placeholder='enter a title...' className='outline-none rounded-sm p-1 mt-2 w-[80%] font-bold uppercase' value={title}  onChange={e=>setTitle(e.target.value)} />
+       <textarea placeholder='Type your content here...' rows={20} cols={20} className='outline-none rounded-sm p-3 mt-4 w-[80%]' value={content} onChange={e=>setContent(e.target.value)} />
+       <input className='block mt-3 text-sm text-gray-500
+      file:me-4 file:py-2 file:px-4
+      file:rounded-lg file:border-0
+      file:text-sm file:font-semibold
+      file:bg-blue-600 file:text-white
+      hover:file:bg-blue-700
+      file:disabled:opacity-50 file:disabled:pointer-events-none
+      dark:file:bg-blue-500
+      dark:hover:file:bg-blue-400 text-center' onChange={(e) => handleChangeImage(e)}  type="file" accept='image/*' />
+       <button className=' mt-3 outline-none px-4 py-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' type="submit" >Submit</button>
      </form>
     
     </section>

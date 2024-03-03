@@ -1,10 +1,15 @@
 import './globals.css'
-import { Montserrat } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Provider from '@/components/Providers';
 
 
-const inter = Montserrat({ subsets: ['latin'] })
+const roboto = Roboto({ 
+  subsets: ['latin'],
+  weight:["100", "300", "400", "500", "700", "900"],
+  variable: '--font-roboto',  
+
+})
 
 export const metadata = {
   title: 'Blogger',
@@ -14,7 +19,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="{inter.className} create-post__gradient">
+      <body className={roboto.className}>
         <Provider>
         <Navbar/>
         <main>
