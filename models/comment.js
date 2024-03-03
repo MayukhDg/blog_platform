@@ -3,8 +3,14 @@ import mongoose from "mongoose";
 
 const commentSchema = new mongoose.Schema({
    
+    author:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true
+    },
+    
+    
     blogId:{
-        type:String,
+        type:mongoose.Schema.Types.ObjectId,
         required:true
     },
    

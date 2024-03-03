@@ -36,7 +36,8 @@ const BlogCard = ({id, title, content, image, author, comments}) => {
     if(comment==="") return;
     
     await addCommentToBlog({
-       blogId:id,
+      user:session?.user?.id, 
+      blogId:id,
        comment,
        pathname
     })
@@ -67,17 +68,20 @@ const BlogCard = ({id, title, content, image, author, comments}) => {
      />
      <p className='text-2xl font-bold truncate'>{content.substring(0,60)}</p>
      <div className='flex justify-between items-center gap-2 w-full mt-2' >
-     <button onClick={handleDelete} className='outline-none p-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Delete Post</button>
-     <button onClick={()=>handleEdit(id)} className='outline-none p-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Edit Post</button>
+     { session?.user?.id===author && <button onClick={handleDelete} className='outline-none p-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Delete Post</button>}
+     { session?.user?.id===author && <button onClick={()=>handleEdit(id)} className='outline-none p-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Edit Post</button>}
      <button onClick={()=>addComment(id)} className='outline-none p-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Comment</button>
      <button onClick={()=>setOpenModal(true)} className='outline-none p-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >show full post</button>
      </div>
      <textarea className='mt-5 outline-none' row={300} cols={80} value={comment} onChange={e=>setComment(e.target.value)} />
       {comments.map((item, index)=>(
        <CommentCard
+       blogId={item.blogId}
+       comment={item.comment}
+       pathname={pathname}
+       author={item.author}
        key={item._id}
        id={item._id}
-       comment={item.comment}
        />
      ))}
     </div>}

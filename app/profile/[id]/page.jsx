@@ -1,6 +1,5 @@
 import BlogCard from '@/components/BlogCard';
 import Loader from '@/components/Loader';
-import { usePathname } from 'next/navigation';
 import { fetchUserBlogs } from '@/lib/actions/blog.actions';
 import { fetchUser } from '@/lib/actions/user.actions';
 
@@ -20,8 +19,6 @@ import { fetchUser } from '@/lib/actions/user.actions';
      post.author === params.id
     )
   })  
-  
-  console.log(UserBlogs);
     
  
 
