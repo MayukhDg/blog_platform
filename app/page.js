@@ -7,11 +7,20 @@ import BlogCard from "@/components/BlogCard";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
+export const fetchToken = async () => {
+  try {
+    const response = await fetch("/api/auth/token");
+    return response.json();
+  } catch (err) {
+    throw err;
+  }
+};
+
+
 const Home = () => {
   
  const { data:session } = useSession();
  const [blogs, setBlogs] = useState([]);
-const pathname = usePathname();
 
  const fetchBlogPosts = async()=>{
    const data = await fetchAllBlogs();
@@ -21,11 +30,10 @@ const pathname = usePathname();
  useEffect(()=>{
   fetchBlogPosts()
  },[])
- 
 
  return (
     <section id="home" className='relative'>
-    { session?.user?.id ? 
+    { session?.accessToken ?
     <div className="flex flex-col ml-4 w-full items-center py-3" >
       <h1 className="text-4xl text-white font-bold" > Welcome {session?.user?.name}</h1>
   <h3 className="text-4xl text-white font-bold mt-3" >Check Out the latest posts on blogger!</h3>

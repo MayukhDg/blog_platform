@@ -4,6 +4,8 @@ import { connectToDB } from "@/lib/dbConnect";
 import User from "@/models/user";
 
 export const Options = {
+  
+ 
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
@@ -11,9 +13,19 @@ export const Options = {
     }),
   ],
   callbacks:{
+    
+    async jwt({ token, account, profile }) {
+      // Persist the OAuth access_token and or the user id to the token right after signin
+      if (account) {
+        token.accessToken = account.access_token
+      }
+      return token
+    },
+    
     async session({ session, user, token }) {
       const sessionUser = await User.findOne({ email: session.user.email });
       session.user.id = sessionUser._id.toString();
+      session.accessToken = token.accessToken
 
       return session;
     },
