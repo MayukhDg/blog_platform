@@ -71,11 +71,13 @@ const BlogCard = ({id, title, content, image, author, comments}) => {
      { session?.user?.id===author && <button onClick={handleDelete} className='outline-none p-4 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Delete Post</button>}
      { session?.user?.id===author && <button onClick={()=>handleEdit(id)} className='outline-none p-4 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Edit Post</button>}
      <button onClick={()=>addComment(id)} className='outline-none p-4 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Comment</button>
-     <button onClick={()=>setOpenModal(true)} className='outline-none p-4 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >show full post</button>
+     <button onClick={()=>setOpenModal(true)} className='outline-none p-4 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Show full post</button>
      </div>
      <textarea placeholder='Comment on this post...' className='mt-5 outline-none px-3 py-3' row={300} cols={80} value={comment} onChange={e=>setComment(e.target.value)} />
+      <div className='flex flex-col w-full gap-2 mt-5'>
       {comments.map((item, index)=>(
        <CommentCard
+       userImage={session?.user?.image}
        blogId={item.blogId}
        comment={item.comment}
        pathname={pathname}
@@ -84,7 +86,9 @@ const BlogCard = ({id, title, content, image, author, comments}) => {
        id={item._id}
        />
      ))}
-    </div>
+ 
+      </div>
+         </div>
     <Modal onClose={onClose} openModal={openModal} setOpenModal = {setOpenModal} title={ title} content= {content} image={image} author={author}/>
     </>
   )

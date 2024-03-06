@@ -13,21 +13,11 @@
 
 
 body{
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,31,68,1) 35%, rgba(0,212,255,1) 100%);
+ @apply bg-gradient-to-r from-emerald-100 to-cyan-300
 }
 
 
 
-.create-post__gradient{
-    background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,31,68,1) 35%, rgba(0,212,255,1) 100%);
-}
-
-nav{
-    background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(6,4,22,0.8856792717086834) 40%);
-}
 
 
 
