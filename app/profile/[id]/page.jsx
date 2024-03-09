@@ -29,7 +29,7 @@ import { fetchUser } from '@/lib/actions/user.actions';
   
     return (
     <>
-    <section className='flex flex-wrap w-screen gap-5 p-3 m-auto'>
+    <section className='flex flex-wrap w-screen gap-5 px-3 m-auto py-6'>
       { UserBlogs.map((post)=>(
         <BlogCard
           key={post._id}
