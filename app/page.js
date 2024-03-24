@@ -34,9 +34,9 @@ const Home = () => {
  return (
     <section id="home" className='relative'>
     { session?.accessToken ?
-    <div className="flex flex-col ml-4 w-full items-center py-3" >
-      <h1 className="text-4xl bg-gradient-to-r from-teal-300 to-teal-700 bg-clip-text  font-extrabold" > Welcome {session?.user?.name}</h1>
-  <h3 className="text-4xl  bg-gradient-to-r from-teal-300 to-teal-700 bg-clip-text  font-extrabold mt-3" >Check Out the latest posts on blogger!</h3>
+    <div className="flex flex-col px-4 w-full items-start  md:items-center py-3 overflow-x-hidden" >
+  <h1 className="md:text-4xl text-2xl bg-gradient-to-r text-lime-700   font-extrabold" > Welcome {session?.user?.name}</h1>
+  <h3 className="md:text-4xl text-2xl bg-gradient-to-r text-lime-700   font-extrabold mt-3" >Check Out the latest posts on blogger!</h3>
   <div className="flex items-center w-full p-3 flex-wrap gap-3" >
    {blogs.map((item)=>(
     <BlogCard
@@ -54,8 +54,8 @@ const Home = () => {
     :
     <div className=" w-full justify-center flex ml-4 mt-4" >
     <div className="flex flex-col gap-3" >
-    <h1 className="text-4xl bg-gradient-to-r from-teal-300 to-teal-700 bg-clip-text  font-extrabold" >Welcome to Blogger</h1>
-    <h3 className="text-4xl bg-gradient-to-br from-lime-300 to-green-300 bg-clip-text font-bold" >Post about the latest trending topics here</h3>
+    <h1 className="md:text-4xl text-2xl bg-gradient-to-r text-lime-700  font-extrabold" >Welcome to Blogger</h1>
+    <h3 className="md:text-4xl text-2xl bg-gradient-to-br text-green-900 font-bold" >Post about the latest trending topics here</h3>
      <Image
       src="/hero_1.jpg"
       height={650}

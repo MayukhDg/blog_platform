@@ -4,6 +4,7 @@ import React from 'react';
 import { useSession, signIn, signOut } from "next-auth/react"
 import Link from 'next/link';
 import Image from 'next/image';
+import MobileMenu from './MobileMenu';
 
 
 const Navbar = () => {
@@ -12,7 +13,7 @@ const Navbar = () => {
  
 
   return (
-    <nav className='flex justify-between items-center px-5 py-3 border-b-orange-200 box-shadow '>
+    <nav className='flex justify-between items-center px-5 pt-3 pb-5  shadow overflow-x-hidden '>
    <Link href={"/"}>
    <Image
      src={"/logo2.png"}
@@ -25,7 +26,7 @@ const Navbar = () => {
     { !session?.user?.email ?  
     <button onClick={()=>signIn("google")}className='outline-none px-4 py-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold '  >Sign In</button>: 
     
-    <div className='flex gap-3 items-center flex-1 justify-end'>
+    <div className='md:flex hidden gap-3 items-center flex-1 justify-end'>
     <Link href="/create-post" >
     <button className='outline-none p-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Create Post</button>
   </Link>
@@ -39,8 +40,9 @@ const Navbar = () => {
      className='rounded-3xl object-contain'
     />
     </Link>
-    </div>
+   </div>
      }
+ { session?.user?.email && <MobileMenu session={session}/>}
       
       </nav>
   )

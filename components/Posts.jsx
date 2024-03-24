@@ -21,7 +21,7 @@ const Posts = () => {
   },[session?.user?.id])  
   
   return (
-    <div className='flex p-4 flex-wrap flex-1' >
+    <div className='flex px-4 flex-wrap flex-1 overflow-x-hidden md:justify-start' >
     { posts.map((post)=>(
      <BlogCard
      key={post._id}

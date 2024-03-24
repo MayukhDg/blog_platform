@@ -33,7 +33,7 @@ const BlogCard = ({id, title, content, image, author, comments}) => {
   } 
 
   const addComment = async()=>{
-    if(comment==="") return;
+    if(comment==="" || comment.length<60) return;
     
     await addCommentToBlog({
       user:session?.user?.id, 
@@ -57,7 +57,7 @@ const BlogCard = ({id, title, content, image, author, comments}) => {
 
   return (
     <>
-    <div  className='flex flex-col bg-slate-500 p-5 justify-center items-center cursor-pointer mt-3 rounded-lg shadow' >
+    <div  className='md:w-auto w-full mr-2 flex flex-col bg-slate-500 p-5 justify-center items-center cursor-pointer mt-3 rounded-lg shadow' >
      <h3 className='text-xl font-bold' >{title}</h3>
      <Image
       src={image}
@@ -66,14 +66,14 @@ const BlogCard = ({id, title, content, image, author, comments}) => {
       width={350}
       className='object-contain mt-3'
      />
-     <p className='text-lg font-normal truncate mt-2'>{content.substring(0,60)}...</p>
-     <div className='flex justify-between items-center gap-2 w-full mt-4' >
-     { session?.user?.id===author && <button onClick={handleDelete} className='outline-none p-4 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Delete Post</button>}
-     { session?.user?.id===author && <button onClick={()=>handleEdit(id)} className='outline-none p-4 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Edit Post</button>}
-     <button onClick={()=>addComment(id)} className='outline-none p-4 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Comment</button>
-     <button onClick={()=>setOpenModal(true)} className='outline-none p-4 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Show full post</button>
+     <p className='md:text-lg text-sm font-normal  mt-2'>{content.substring(0,60)}...</p>
+     <div className='flex justify-between items-center gap-[30px] w-full mt-4 flex-wrap' >
+     { session?.user?.id===author && <button onClick={handleDelete} className='outline-none px-3 py-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Delete Post</button>}
+     { session?.user?.id===author && <button onClick={()=>handleEdit(id)} className='outline-none px-3 py-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Edit Post</button>}
+     <button onClick={()=>addComment(id)} className='outline-none px-3 py-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Comment</button>
+     <button onClick={()=>setOpenModal(true)} className='outline-none px-3 py-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Show full post</button>
      </div>
-     <textarea placeholder='Comment on this post...' className='mt-5 outline-none px-3 py-3' row={300} cols={80} value={comment} onChange={e=>setComment(e.target.value)} />
+     <textarea placeholder='Comment on this post...' className='w-full mt-5  outline-none px-3 py-3'  value={comment} onChange={e=>setComment(e.target.value)} />
       <div className='flex flex-col w-full gap-2 mt-5'>
       {comments.map((item, index)=>(
        <CommentCard
