@@ -20,23 +20,27 @@ export const fetchToken = async () => {
 const Home = () => {
   
  const { data:session } = useSession();
- const [blogs, setBlogs] = useState([]);
+ const [blogs, setBlogs] = useState([])
 
  const fetchBlogPosts = async()=>{
    const data = await fetchAllBlogs();
-   setBlogs(data);
+   return data; 
  } 
  
  useEffect(()=>{
-  fetchBlogPosts()
+  fetchBlogPosts().then(data=>setBlogs(data))
  },[])
+
+ 
+
 
  return (
     <section id="home" className='relative'>
     { session?.accessToken ?
-    <div className="flex flex-col px-4 w-full items-start  md:items-center py-3 overflow-x-hidden" >
-  <h1 className="md:text-4xl text-2xl bg-gradient-to-r text-lime-700   font-extrabold" > Welcome {session?.user?.name}</h1>
-  <h3 className="md:text-4xl text-2xl bg-gradient-to-r text-lime-700   font-extrabold mt-3" >Check Out the latest posts on blogger!</h3>
+    <div className="flex flex-col px-4 w-full items-start  md:items-center py-3 overflow-x-hidden"  >
+       <div className="h-screen w-screen bg-[url('/hero_2.jpg')] absolute top-0 bg-cover -z-30 blur-xl"  />
+  <h1 className="md:text-4xl text-2xl bg-gradient-to-r text-amber-950 font-extrabold  " > Welcome {session?.user?.name}</h1>
+  <h3 className="md:text-4xl text-2xl bg-gradient-to-br text-amber-950 font-extrabold" >Check Out the latest posts on Blogger</h3>
   <div className="flex items-center w-full p-3 flex-wrap gap-3" >
    {blogs.map((item)=>(
     <BlogCard
@@ -52,10 +56,11 @@ const Home = () => {
   </div>
     </div>
     :
-    <div className=" w-full justify-center flex ml-4 mt-4" >
+    <div className=" w-full justify-center flex ml-4 mt-4 h-full" >
+    <div className="h-screen w-screen bg-[url('/hero_2.jpg')] absolute top-0 bg-cover -z-30 mix-blend-plus-lighter" />
     <div className="flex flex-col gap-3" >
-    <h1 className="md:text-4xl text-2xl bg-gradient-to-r text-lime-700  font-extrabold" >Welcome to Blogger</h1>
-    <h3 className="md:text-4xl text-2xl bg-gradient-to-br text-green-900 font-bold" >Post about the latest trending topics here</h3>
+    <h1 className="md:text-4xl text-2xl bg-gradient-to-r text-amber-950  " >Welcome to Blogger</h1>
+    <h3 className="md:text-4xl text-2xl bg-gradient-to-br text-amber-950 " >Post about the latest trending topics here</h3>
      <Image
       src="/hero_1.jpg"
       height={650}

@@ -79,7 +79,7 @@ const createPost = () => {
   
   return (
     <section className='h-screen w-screen flex items-center justify-center  form__wrapper' >
-     <form  className='bg-slate-800 p-5 flex flex-col items-center justify-start mx-auto w-2/3 mt-4' onSubmit={handleSubmit} >
+     <form  className='bg-slate-800 p-5 mx-5 flex flex-col items-center justify-start md:mx-auto w-full md:w-2/3 mt-4' onSubmit={handleSubmit} >
       <input placeholder='enter a title...' className='outline-none rounded-sm p-1 mt-2 w-[80%] font-bold uppercase' value={title}  onChange={e=>setTitle(e.target.value)} />
        <textarea placeholder='Type your content here...' rows={20} cols={20} className='outline-none rounded-sm p-3 mt-4 w-[80%]' value={content} onChange={e=>setContent(e.target.value)} />
        <input className='block mt-3 text-sm text-gray-500

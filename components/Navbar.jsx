@@ -20,7 +20,7 @@ const Navbar = () => {
      height={50}
     width={50}
     alt="logo"
-    className='rounded-r-xl'
+    className='rounded-e-3xl'
       />
    </Link>
     { !session?.user?.email ?  

@@ -33,7 +33,7 @@ const BlogCard = ({id, title, content, image, author, comments}) => {
   } 
 
   const addComment = async()=>{
-    if(comment==="" || comment.length<60) return;
+    if(comment==="") return;
     
     await addCommentToBlog({
       user:session?.user?.id, 
@@ -71,7 +71,7 @@ const BlogCard = ({id, title, content, image, author, comments}) => {
      { session?.user?.id===author && <button onClick={handleDelete} className='outline-none px-3 py-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Delete Post</button>}
      { session?.user?.id===author && <button onClick={()=>handleEdit(id)} className='outline-none px-3 py-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Edit Post</button>}
      <button onClick={()=>addComment(id)} className='outline-none px-3 py-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Comment</button>
-     <button onClick={()=>setOpenModal(true)} className='outline-none px-3 py-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Show full post</button>
+     <button onClick={()=>setOpenModal(true)} className='outline-none px-3 py-2 bg-slate-900 text-[20px] rounded-2xl text-white font-bold ' >Show Full Post</button>
      </div>
      <textarea placeholder='Comment on this post...' className='w-full mt-5  outline-none px-3 py-3'  value={comment} onChange={e=>setComment(e.target.value)} />
       <div className='flex flex-col w-full gap-2 mt-5'>

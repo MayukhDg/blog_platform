@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Menu } from '@headlessui/react'
 import Image from 'next/image'
+import { signOut } from "next-auth/react"
 import Link from "next/link"
 
 
@@ -18,6 +19,7 @@ function MobileMenu({session}) {
          width={50}
          alt="menu"
          onClick={()=>setMenuOpen(true)}
+         className='object-contain'
         />
       </Menu.Button>}
 
@@ -28,10 +30,11 @@ function MobileMenu({session}) {
          width={50}
          alt="menu"
          onClick={()=>setMenuOpen(false)}
+         className='object-contain'
         />
       </Menu.Button>}
 
-      <Menu.Items as="div" className=" z-30 flex items-center flex-col p-3 absolute right-7 gap-5 bg-white">
+      <Menu.Items as="div" className=" rounded-lg z-30 flex items-center flex-col p-3 absolute right-7 gap-5 bg-gray-300">
       <Menu.Item>
       <Link href={`/profile/${session?.user?.id}`}>
     <Image

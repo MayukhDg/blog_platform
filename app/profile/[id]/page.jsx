@@ -29,8 +29,11 @@ import { fetchUser } from '@/lib/actions/user.actions';
   
     return (
     <>
-    <section className='flex flex-wrap w-screen gap-5 px-3 m-auto py-6'>
-      { UserBlogs.map((post)=>(
+    <div className='flex flex-col px-3 py-6 relative' >
+    <div className="h-screen w-screen bg-[url('/hero_2.jpg')] absolute top-0 bg-cover -z-30 blur-xl"  />
+    <h1 className="md:text-4xl text-2xl bg-gradient-to-r text-amber-950 font-extrabold  ">{user?.name}'s profile</h1>
+    <div className='flex flex-wrap w-screen gap-5 m-auto  mt-3'>
+    { UserBlogs.map((post)=>(
         <BlogCard
           key={post._id}
           id={post._id}
@@ -40,8 +43,9 @@ import { fetchUser } from '@/lib/actions/user.actions';
           author={params.id}
           comments={post.comments}
         />
-      )) }
-    </section>
+      )) } 
+    </div>
+    </div>
     </>
   )
 }
